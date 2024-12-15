@@ -25,6 +25,9 @@ public:
     inline double getValue();
     inline void setValue(const double &value);
 
+    inline Scale getScale();
+    inline void setScale(const Scale &scale);
+
     inline double getPeakValue();
     inline void setPeakValue(const double &peakValue);
 
@@ -49,6 +52,7 @@ private:
     double peakValue;
     double floorValue = 0;
     double vuLength;
+    Scale scale = Scale::Linear;
     Qt::Orientation orientation;
     inline void refresh();
     inline void refreshVuLength();
@@ -101,6 +105,13 @@ inline void Bar::init(Bar &bar) {
     *this = bar;
 }
 
+inline Scale Bar::getScale() {
+    return this->scale;
+}
+
+inline void Bar::setScale(const Scale &scale) {
+    this->scale = scale;
+}
 
 inline void Bar::setValue(const double &value) {
     this->value = value;

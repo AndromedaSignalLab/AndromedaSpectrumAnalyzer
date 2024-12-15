@@ -25,6 +25,10 @@ enum class BarType {
     Discrete, Continuous
 };
 
+enum class Scale {
+    Linear, Logarithmic
+};
+
 struct SpectrumAnalyzerParameters{
     BarType barType = BarType::Discrete;
     Qt::Orientation barDirection;

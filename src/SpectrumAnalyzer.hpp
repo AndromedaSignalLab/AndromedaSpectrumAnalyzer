@@ -33,6 +33,8 @@ public:
     SpectrumAnalyzerParameters getParameters() const;
     void setParameters(const SpectrumAnalyzerParameters &value);
 
+    void setScale(const Scale &scale);
+    Scale getScale();
     void setBarValue(const size_t &barIndex, const double &value);
     void setBarType(const BarType &barType);
     void setBarAmount(const size_t &barAmount);
@@ -49,6 +51,7 @@ public:
     QGradientStops getGradient();
 private:
     SpectrumAnalyzerParameters parameters;
+    Scale scale;
     QVector<Bar*> bars;
     std::mutex dataMutex;
     void removeBars();
@@ -83,6 +86,19 @@ inline SpectrumAnalyzer::SpectrumAnalyzer(QWidget *parent) : QWidget(parent)
     gradient.setColorAt(1.0, Qt::green);
     //gradient = QGradient::Seashore;
 */
+}
+
+inline Scale SpectrumAnalyzer::getScale() {
+    return this->scale;
+}
+
+inline void SpectrumAnalyzer::setScale(const Scale &scale) {
+    this->scale = scale;
+    for(Bar *bar:bars) {
+        if(bar != nullptr) {
+            bar->setScale(scale);
+        }
+    }
 }
 
 inline void SpectrumAnalyzer::removeBars(){
