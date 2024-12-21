@@ -25,13 +25,49 @@ enum class BarType {
     Discrete, Continuous
 };
 
-struct SpectrumAnalyzerParameters{
+enum class GraphType : int {
+    Bars = 0, LineGraph = 1, AreaGraph = 2
+};
+
+enum Frequency {
+    _16Hz = 16,
+    _20Hz = 20,
+    _25Hz = 25,
+    _30Hz = 30,
+    _40Hz = 40,
+    _50Hz = 50,
+    _60Hz = 60,
+    _100Hz = 100,
+    _250Hz = 250,
+    _500Hz = 500,
+    _1kHz = 1000,
+    _2kHz = 2000,
+    _4kHz = 4000,
+    _8kHz = 8000,
+    _12kHz = 12000,
+    _16kHz = 16000,
+    _20kHz = 20000,
+    _22kHz = 22000
+};
+
+struct FrequencyRange {
+    Frequency beginningFrequency;
+    Frequency endingFrequency;
+};
+
+enum class OctaveBands : int {
+    One = 10, OneHalf = 20, OneThird = 30, OneQuarter = 40, OneSixth = 60, OneEighth = 80, OneTwelfth = 120, OneTwentyFourth = 240
+};
+
+struct SpectrumAnalyzerParameters {
+    GraphType graphType = GraphType::Bars;
     BarType barType = BarType::Discrete;
-    Qt::Orientation barDirection;
+    OctaveBands octaveBands = OctaveBands::OneHalf;
+    FrequencyRange frequencyRange = {.beginningFrequency = Frequency::_20Hz, .endingFrequency = Frequency::_20kHz};
+    Qt::Orientation barDirection = Qt::Orientation::Vertical;
     int dimmingRatio = 0;
     unsigned char dimmedTransparencyRatio = 100;
     double blackCoefficient;
-    int barAmount;
     double peakValue;
     double floorValue;
     double barWidthRatio;
