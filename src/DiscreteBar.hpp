@@ -16,7 +16,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 #include "Parameters.hpp"
 #include <MathUtil.hpp>
 #include <QDebug>
-#include <DSP.hpp>
+#include <AndromedaDSP.hpp>
 
 class DiscreteBar : public Bar
 {
