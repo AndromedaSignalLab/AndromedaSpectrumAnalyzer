@@ -143,9 +143,9 @@ inline void SpectrumAnalyzer::paintEvent(QPaintEvent *event)
 inline void SpectrumAnalyzer::recalculateInternalVariables() {
     qreal barWidth, gapWidth;
     if(parameters.barDirection == Qt::Orientation::Vertical)
-        DSP::MathUtil::divideLineIntoSegmentsAndGaps<qreal>(size().width(), parameters.barAmount, parameters.barWidthRatio, barWidth, gapWidth);
+        AndromedaDSP::MathUtil::divideLineIntoSegmentsAndGaps<qreal>(size().width(), parameters.barAmount, parameters.barWidthRatio, barWidth, gapWidth);
     else
-        DSP::MathUtil::divideLineIntoSegmentsAndGaps<qreal>(size().height(), parameters.barAmount, parameters.barWidthRatio, barWidth, gapWidth);
+        AndromedaDSP::MathUtil::divideLineIntoSegmentsAndGaps<qreal>(size().height(), parameters.barAmount, parameters.barWidthRatio, barWidth, gapWidth);
 
     int i=0;
     for(Bar *bar:bars) {

@@ -16,6 +16,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 #include "Parameters.hpp"
 #include <MathUtil.hpp>
 #include <QDebug>
+#include <DSP.hpp>
 
 class DiscreteBar : public Bar
 {
@@ -104,7 +105,7 @@ inline void DiscreteBar::recalculateLeds()
 {
     if(this->getLedAmount() >0 && this->getLedGapRatio() > 0) {
         if(getOrientation() == Qt::Orientation::Vertical) {
-            DSP::MathUtil::divideLineIntoSegmentsAndGaps(getSizes().height(), this->getLedAmount(), this->getLedGapRatio(), ledSize, gapSize);
+            AndromedaDSP::MathUtil::divideLineIntoSegmentsAndGaps(getSizes().height(), this->getLedAmount(), this->getLedGapRatio(), ledSize, gapSize);
             for(int i=0; i<getLedAmount(); i++) {
                 qreal length = i*(ledSize + gapSize);
                 qreal centerLength = length + (ledSize/2);
@@ -116,7 +117,7 @@ inline void DiscreteBar::recalculateLeds()
             }
         }
         else {
-            DSP::MathUtil::divideLineIntoSegmentsAndGaps(getSizes().width(), this->getLedAmount(), this->getLedGapRatio(), ledSize, gapSize);
+            AndromedaDSP::MathUtil::divideLineIntoSegmentsAndGaps(getSizes().width(), this->getLedAmount(), this->getLedGapRatio(), ledSize, gapSize);
             for(int i=0; i<getLedAmount(); i++) {
                 qreal length = i*(ledSize + gapSize);
                 qreal centerLength = length + (ledSize/2);
